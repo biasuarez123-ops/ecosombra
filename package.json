@@ -1,0 +1,26 @@
+{
+  "name": "ecosombra",
+  "version": "1.0.0",
+  "description": "Sistema colaborativo de mapeamento de sombra urbana",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node tests/verificacao.test.js"
+  },
+  "keywords": [
+    "ecosombra",
+    "mapa",
+    "arborizacao",
+    "sustentabilidade"
+  ],
+  "author": "Equipe EcoSombra",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.0"
+  }
+}
