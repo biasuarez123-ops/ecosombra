@@ -112,3 +112,122 @@ O **EcoSombra** é uma aplicação web voltada ao mapeamento colaborativo e cons
 * **Banco de Dados:** PostgreSQL para ambiente de produção em nuvem (Neon / Supabase / Render Postgres) com suporte local inteligente para desenvolvimento imediato.
 * **Frontend:** HTML5, CSS moderno responsivo com Bootstrap 5 via CDN, JavaScript nativo (ES6+), biblioteca Leaflet.js com camadas OpenStreetMap e serviço de busca Nominatim.
 * **Deploy:** Plataforma Render.com (Web Service) conectada a repositório Git, com variáveis de ambiente configuradas no painel.
+---
+
+## 9. Instalação e execução
+
+### 9.1. Ambiente necessário
+- Node.js versão 22 ou superior.
+- npm, instalado junto com o Node.js.
+- Git para clonar o repositório.
+- Sistema operacional testado: Windows.
+- Navegador atualizado, como Google Chrome.
+
+### 9.2. Tecnologias e dependências
+O projeto utiliza Node.js e Express.js no backend, com JavaScript, HTML e CSS no frontend.
+
+As dependências são instaladas pelo comando:
+
+```bash
+npm install
+```
+
+Principais dependências:
+- `express`: criação do servidor web.
+- `bcryptjs`: proteção das senhas por hash.
+- `cookie-session`: gerenciamento de sessões.
+- `dotenv`: leitura de variáveis de ambiente.
+- `pg`: conexão com PostgreSQL.
+
+### 9.3. Banco de dados
+O EcoSombra utiliza dois modos de armazenamento:
+
+- **Desenvolvimento local:** SQLite, utilizando o módulo nativo `node:sqlite` do Node.js 22.
+- **Produção:** PostgreSQL, configurado pela variável `DATABASE_URL`.
+
+O banco possui as seguintes tabelas:
+
+- `usuarios`: armazena os dados dos usuários.
+- `locais_sombra`: armazena os locais cadastrados e relaciona cada registro ao usuário responsável.
+
+A tabela `locais_sombra` possui uma chave estrangeira `usuario_id`, relacionada ao campo `id` da tabela `usuarios`, com exclusão em cascata.
+
+No ambiente local, as tabelas são criadas automaticamente pelo sistema no arquivo `database/ecosombra.db`.
+
+No PostgreSQL, o arquivo `database/schema.sql` contém os comandos para criação das tabelas. O script deve ser executado no banco de dados configurado antes da inicialização da aplicação.
+
+O sistema também possui um registro inicial de demonstração em Porto Velho, Rondônia, quando a tabela de locais está vazia.
+
+### 9.4. Variáveis de ambiente
+O projeto utiliza as seguintes variáveis:
+
+- `PORT`: porta utilizada pelo servidor.
+- `SESSION_SECRET`: chave utilizada para assinar os cookies de sessão.
+- `DATABASE_URL`: endereço de conexão com o PostgreSQL. Quando não informado, o sistema utiliza SQLite local.
+- `ADMIN_NAME`: nome do administrador inicial.
+- `ADMIN_EMAIL`: e-mail do administrador inicial.
+- `ADMIN_INITIAL_PASSWORD`: senha inicial do administrador.
+
+O arquivo `.env.example` apresenta valores ilustrativos. As credenciais reais devem permanecer no arquivo `.env`, que não deve ser enviado ao repositório público.
+
+### 9.5. Instalação passo a passo
+
+1. Instalar o Node.js e o Git.
+2. Abrir o terminal.
+3. Clonar o repositório:
+
+```bash
+git clone https://github.com/biasuarez123-ops/ecosombra.git
+```
+
+4. Entrar na pasta do projeto:
+
+```bash
+cd ecosombra
+```
+
+5. Instalar as dependências:
+
+```bash
+npm install
+```
+
+6. Configurar as variáveis de ambiente, caso necessário. Para utilizar PostgreSQL, informar a variável `DATABASE_URL` e executar o arquivo `database/schema.sql` no banco configurado.
+
+7. Iniciar a aplicação:
+
+```bash
+npm start
+```
+
+8. Acessar pelo navegador:
+
+```text
+http://localhost:3000
+```
+
+### 9.6. Primeiro acesso e fluxo de teste
+Para testar a aplicação localmente:
+
+1. Abrir o endereço `http://localhost:3000`.
+2. Visualizar os locais disponíveis no mapa e na lista.
+3. Criar uma conta pelo formulário de cadastro.
+4. Entrar utilizando o e-mail e a senha cadastrados.
+5. Cadastrar um novo local, informando título, nível de sombra e coordenadas.
+6. Verificar se o novo local aparece no mapa e na listagem.
+7. Testar a edição e a exclusão dos locais permitidos ao usuário.
+
+O administrador inicial pode ser configurado por meio das variáveis de ambiente, sem inserir credenciais diretamente no código-fonte.
+
+### 9.7. Testes
+O projeto possui um comando para executar os testes automatizados:
+
+```bash
+npm test
+```
+
+### 9.8. Limitações conhecidas
+- A classificação dos locais depende das informações cadastradas pelos usuários e pode exigir verificação.
+- A geolocalização depende da autorização do usuário no navegador.
+- O funcionamento em produção depende da configuração de uma hospedagem compatível com Node.js e de um banco PostgreSQL persistente.
+- O endereço público definitivo deverá ser informado após a implantação e a realização dos testes de acesso externo.

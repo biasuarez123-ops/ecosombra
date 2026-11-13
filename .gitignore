@@ -5,3 +5,5 @@ node_modules/
 database/*.db
 database/*.sqlite
 .DS_Store
+.env.*
+!.env.example
