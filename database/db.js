@@ -157,31 +157,14 @@ async function initDb() {
 
     const initialShades = [
       {
-        titulo: 'Bosque das Figueiras - Praça da Sé',
-        descricao: 'Área com copas muito densas e bancos de madeira com sombra fresca o dia todo.',
-        nivel_sombra: 'muita',
-        latitude: -23.55052,
-        longitude: -46.633308,
-        endereco: 'Praça da Sé, Centro, São Paulo - SP'
-      },
-      {
-        titulo: 'Parada de Ônibus Coberta com Pergolado',
-        descricao: 'Abrigo urbano com cobertura verde de trepadeiras, sombra moderada.',
+        titulo: 'Praça das Três Caixas d’Água',
+        descricao: 'Local histórico de Porto Velho. Classificação de sombra pendente de verificação.',
         nivel_sombra: 'moderada',
-        latitude: -23.55325,
-        longitude: -46.63581,
-        endereco: 'Av. Brigadeiro Luís Antônio, São Paulo - SP'
-      },
-      {
-        titulo: 'Muda de Ipê Amarelo - Calçada Comercial',
-        descricao: 'Árvore jovem que ainda projeta pouca sombra durante o meio-dia.',
-        nivel_sombra: 'pouca',
-        latitude: -23.54812,
-        longitude: -46.63721,
-        endereco: 'Rua São Bento, Centro Histórico, São Paulo - SP'
+        latitude: -8.76290,
+        longitude: -63.90768,
+        endereco: 'Praça das Três Caixas d’Água, Centro, Porto Velho - RO'
       }
     ];
-
     for (const shade of initialShades) {
       await query(
         `INSERT INTO locais_sombra (usuario_id, titulo, descricao, nivel_sombra, latitude, longitude, endereco)
