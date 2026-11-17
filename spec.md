@@ -190,6 +190,7 @@ cd ecosombra
 
 ```bash
 npm install
+copy .env.example .env
 ```
 
 6. Configurar as variáveis de ambiente, caso necessário. Para utilizar PostgreSQL, informar a variável `DATABASE_URL` e executar o arquivo `database/schema.sql` no banco configurado.
