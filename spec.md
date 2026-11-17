@@ -177,7 +177,7 @@ O arquivo `.env.example` apresenta valores ilustrativos. As credenciais reais de
 3. Clonar o repositório:
 
 ```bash
-git clone https://github.com/biasuarez123-ops/ecosombra.git
+git clone -b master https://github.com/biasuarez123-ops/ecosombra.git
 ```
 
 4. Entrar na pasta do projeto:
